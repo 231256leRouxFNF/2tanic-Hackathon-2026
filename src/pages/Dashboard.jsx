@@ -7,7 +7,6 @@
  * contain business logic.
  */
 
-// Dashboard.jsx
 import React, { useState } from 'react';
 import CardDeck from './CardDeck';
 import { drawRandomCard } from './cardHelper';
