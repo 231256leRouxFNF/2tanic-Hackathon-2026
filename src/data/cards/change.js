@@ -50,6 +50,11 @@ const changeCards = [
             amount: 10
         }
     }
+
+    //The Exchange
+
+    //The Aurum Quater
+
 ];
 
 export default changeCards;

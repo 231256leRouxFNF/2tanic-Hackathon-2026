@@ -39,6 +39,10 @@ const moneyCards = [
             amount: 20
         }
     }
+
+    //The Exchange
+
+    //The Aurum Quater
 ];
 
 export default moneyCards;
