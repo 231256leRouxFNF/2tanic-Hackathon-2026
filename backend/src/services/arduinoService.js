@@ -8,3 +8,7 @@
  *
  * Placeholder for now.
  */
+
+export function connectArduino(data) {
+    console.log("Arduino connection event received:", data);
+}
