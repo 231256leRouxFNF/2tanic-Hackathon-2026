@@ -1,0 +1,223 @@
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@1,500&display=swap');
+
+
+.game-card.theme-chance {
+  --theme-primary: #B8862F;
+  --theme-text: #8B5A2B;
+  --theme-border: #B8862F;
+  --theme-corner: rgba(184, 134, 47, 0.7);
+  --theme-glow: rgba(110, 31, 42, 0.50);
+  --theme-outer-glow: rgba(184, 134, 47, 0.20);
+}
+
+.game-card.theme-risk {
+  --theme-primary: #1B4B4A;
+  --theme-text: #1B4B4A;
+  --theme-border: #1B4B4A;
+  --theme-corner: rgba(27, 75, 74, 0.7);
+  --theme-glow: rgba(27, 75, 74, 0.60);
+  --theme-outer-glow: rgba(27, 75, 74, 0.25);
+}
+
+.game-card.theme-money {
+  --theme-primary: #2D5E3B;
+  --theme-text: #1D4E2D;
+  --theme-border: #2D5E3B;
+  --theme-corner: rgba(45, 94, 59, 0.7);
+  --theme-glow: rgba(18, 41, 25, 0.60);
+  --theme-outer-glow: rgba(45, 94, 59, 0.25);
+}
+
+.game-card.theme-danger {
+  --theme-primary: #9E352B;
+  --theme-text: #9E2A2B;
+  --theme-border: #9E352B;
+  --theme-corner: rgba(158, 53, 43, 0.7);
+  --theme-glow: rgba(110, 31, 42, 0.60);
+  --theme-outer-glow: rgba(158, 53, 43, 0.25);
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 340px;
+  height: 272px;
+  padding: 24px;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 8px;
+  border: 1.5px solid var(--theme-border);
+  background: linear-gradient(160deg, #EAD9B8 8.49%, #DDC9A3 91.51%);
+  box-shadow: 
+    0 0 0 4px var(--theme-glow), 
+    0 0 0 6px var(--theme-outer-glow), 
+    0 1px 0 0 rgba(255, 255, 255, 0.50) inset, 
+    0 24px 64px 0 rgba(0, 0, 0, 0.75);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+  animation: cardEntry 0.5s ease-out;
+}
+
+
+@keyframes cardEntry {
+  from { opacity: 0; transform: translateY(15px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(184, 134, 47, 0.35);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+
+.corner-deco {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  color: var(--theme-corner);
+  pointer-events: none;
+}
+.corner-deco.top-left { top: 8px; left: 8px; }
+.corner-deco.top-right { top: 8px; right: 8px; transform: scaleX(-1); }
+.corner-deco.bottom-left { bottom: 8px; left: 8px; transform: scaleY(-1); }
+.corner-deco.bottom-right { bottom: 8px; right: 8px; transform: scale(-1); }
+
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1;
+}
+
+.card-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--theme-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-meta .subtitle {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #8C6A3C;
+}
+
+.card-meta .type-title {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: var(--theme-primary);
+}
+
+
+.card-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 134, 47, 0.4), transparent);
+  margin: 8px 0;
+  z-index: 1;
+}
+
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  padding: 0 4px;
+}
+
+.card-title {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--theme-text);
+  margin: 0 0 8px 0;
+}
+
+.card-description {
+  font-family: 'Lora', 'Georgia', serif;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #2C1A04;
+  margin: 0;
+}
+
+.card-button {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(180deg, #D4AF37 0%, #AA7C11 100%);
+  border: 1px solid #8B6508;
+  border-radius: 4px;
+  color: #FFF;
+  font-family: 'Cinzel', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: filter 0.2s ease, transform 0.1s ease;
+  z-index: 1;
+}
+
+.card-button:hover {
+  filter: brightness(1.1);
+}
+
+.card-button:active {
+  transform: scale(0.98);
+}
+.corner-deco {
+    position: absolute;
+    width: 28px;   /* Updated to match your exact SVG dimensions */
+    height: 28px;  /* Updated to match your exact SVG dimensions */
+    color: var(--theme-corner); /* Pulls the dynamic theme color! */
+    pointer-events: none;
+  }
+  
+  /* Positioning & Flipping for each corner */
+  .corner-deco.top-left { 
+    top: 8px; 
+    left: 8px; 
+  }
+  .corner-deco.top-right { 
+    top: 8px; 
+    right: 8px; 
+    transform: scaleX(-1); 
+  }
+  .corner-deco.bottom-left { 
+    bottom: 8px; 
+    left: 8px; 
+    transform: scaleY(-1); 
+  }
+  .corner-deco.bottom-right { 
+    bottom: 8px; 
+    right: 8px; 
+    transform: scale(-1); /* Flips both horizontally and vertically */
+  }
