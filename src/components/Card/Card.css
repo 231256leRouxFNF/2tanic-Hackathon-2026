@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cinzel+Decorative:wght@700&family=Josefin+Sans:wght@400;600;700&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-.game-card.theme-chance {
+.game-card-scene.theme-chance {
     --theme-primary: #B8862F;
     --theme-text: #B8862F;
     --theme-border: #B8862F;
@@ -9,7 +9,7 @@
     --theme-outer-glow: rgba(184, 134, 47, 0.20);
 }
 
-.game-card.theme-risk {
+.game-card-scene.theme-risk {
     --theme-primary: #1B4B4A;
     --theme-text: #1B4B4A;
     --theme-border: #1B4B4A;
@@ -18,7 +18,7 @@
     --theme-outer-glow: rgba(27, 75, 74, 0.25);
 }
 
-.game-card.theme-money {
+.game-card-scene.theme-money {
     --theme-primary: #2F6D4F;
     --theme-text: #2F6D4F;
     --theme-border: #2F6D4F;
@@ -27,7 +27,7 @@
     --theme-outer-glow: rgba(47, 109, 79, 0.25);
 }
 
-.game-card.theme-danger {
+.game-card-scene.theme-danger {
     --theme-primary: #A13E2A;
     --theme-text: #A13E2A;
     --theme-border: #a13e2a;
@@ -36,25 +36,26 @@
     --theme-outer-glow: rgba(161, 62, 42, 0.25);
 }
 
-.game-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* --- 3D FLIP MECHANIC STUFF --- */
+.game-card-scene {
     width: 340px;
     height: 272px;
-    padding: 24px;
-    box-sizing: border-box;
-    position: relative;
-    border-radius: 8px;
-    border: 1.5px solid var(--theme-border);
-    background: linear-gradient(160deg, #EAD9B8 8.49%, #DDC9A3 91.51%);
-    box-shadow:
-        0 0 0 4px var(--theme-glow),
-        0 0 0 6px var(--theme-outer-glow),
-        0 1px 0 0 rgba(255, 255, 255, 0.50) inset,
-        0 24px 64px 0 rgba(0, 0, 0, 0.75);
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    perspective: 1000px;
     animation: cardEntry 0.5s ease-out;
+}
+
+.game-card-flipper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.game-card-flipper.is-flipped {
+    transform: rotateY(180deg);
+    cursor: default; /* i dont even know if we're using like an ipad tablet type thing but anywayyy */
 }
 
 @keyframes cardEntry {
@@ -62,23 +63,40 @@
         opacity: 0;
         transform: translateY(15px) scale(0.95);
     }
-
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
 }
 
-.game-card::before {
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; 
+    border-radius: 8px;
+    border: 1.5px solid var(--theme-border);
+    box-sizing: border-box;
+    box-shadow:
+        0 0 0 4px var(--theme-glow),
+        0 0 0 6px var(--theme-outer-glow),
+        0 24px 64px 0 rgba(0, 0, 0, 0.75);
+}
+
+
+.card-face::before {
     content: '';
     position: absolute;
     top: 8px;
     left: 8px;
     right: 8px;
     bottom: 8px;
-    border: 1px solid rgba(184, 134, 47, 0.35);
+    border: 1px solid var(--theme-primary);
+    opacity: 0.35;
     border-radius: 4px;
     pointer-events: none;
+    z-index: 0;
 }
 
 
@@ -88,29 +106,70 @@
     height: 28px;
     color: var(--theme-corner);
     pointer-events: none;
+    z-index: 0;
+}
+.corner-deco.top-left { top: 8px; left: 8px; }
+.corner-deco.top-right { top: 8px; right: 8px; transform: scaleX(-1); }
+.corner-deco.bottom-left { bottom: 8px; left: 8px; transform: scaleY(-1); }
+.corner-deco.bottom-right { bottom: 8px; right: 8px; transform: scale(-1); }
+
+.face-dark {
+    background: #27282A; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
 }
 
-.corner-deco.top-left {
-    top: 8px;
-    left: 8px;
+.face-dark .dark-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 1;
 }
 
-.corner-deco.top-right {
-    top: 8px;
-    right: 8px;
-    transform: scaleX(-1);
+.face-dark .cover-icon {
+    width: 44px;
+    height: 44px;
+    color: var(--theme-primary);
 }
 
-.corner-deco.bottom-left {
-    bottom: 8px;
-    left: 8px;
-    transform: scaleY(-1);
+.face-dark .cover-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--theme-primary);
 }
 
-.corner-deco.bottom-right {
-    bottom: 8px;
-    right: 8px;
-    transform: scale(-1);
+.face-dark .tap-to-draw {
+    position: absolute;
+    bottom: 24px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.1); 
+    z-index: 1;
+}
+
+.face-light {
+    transform: rotateY(180deg); 
+    background: linear-gradient(160deg, #EAD9B8 8.49%, #DDC9A3 91.51%);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    box-shadow:
+        0 0 0 4px var(--theme-glow),
+        0 0 0 6px var(--theme-outer-glow),
+        0 1px 0 0 rgba(255, 255, 255, 0.50) inset,
+        0 24px 64px 0 rgba(0, 0, 0, 0.75);
 }
 
 .card-header {
@@ -129,10 +188,7 @@
     justify-content: center;
 }
 
-.card-meta {
-    display: flex;
-    flex-direction: column;
-}
+.card-meta { display: flex; flex-direction: column; }
 
 .card-meta .subtitle {
     font-family: 'Josefin Sans', sans-serif;
@@ -141,9 +197,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--theme-primary);
-
     opacity: 0.85;
-
 }
 
 .card-meta .type-title {
@@ -155,11 +209,11 @@
     color: var(--theme-primary);
 }
 
-
 .card-divider {
     height: 1px;
     opacity: 0.4;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, #B8862F 50%, rgba(0, 0, 0, 0.00) 100%);
+    /* Uses dynamic primary color instead of hardcoded gold */
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, var(--theme-primary) 50%, rgba(0, 0, 0, 0.00) 100%);
     margin: 8px 0;
     z-index: 1;
 }
@@ -189,10 +243,8 @@
     font-size: 14px;
     line-height: 1.6;
     color: #3A3D3F;
-
     margin: 0;
 }
-
 
 .card-button {
     width: 100%;
@@ -214,10 +266,5 @@
     z-index: 1;
 }
 
-.card-button:hover {
-    filter: brightness(1.1);
-}
-
-.card-button:active {
-    transform: scale(0.98);
-}
+.card-button:hover { filter: brightness(1.1); }
+.card-button:active { transform: scale(0.98); }
