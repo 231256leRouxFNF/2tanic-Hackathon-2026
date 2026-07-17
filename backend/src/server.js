@@ -19,12 +19,12 @@ import { Server } from "socket.io";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import gamesRoutes from "./routes/games.route.js";
+import gamesRouter from "./routes/games.route.js";
 
 dotenv.config();
 
 const app = express();
-app.use(gamesRoutes);
+app.use("/api/games", gamesRouter);
 
 app.use(cors());
 app.use(express.json());

@@ -2,54 +2,118 @@ import db from "../config/firebase.js";
 import { buildDeck } from "../services/deck.service.js";
 
 export async function createGame(req, res) {
+    try {
+
+        // Fetch every card from Firestore
+        const snapshot = await db.collection("cards").get();
+
+        const cards = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        // Build a shuffled deck (2 copies of each card)
+        const deck = buildDeck(cards, 2);
+
+        // Game object
+        const game = {
+            status: "waiting",
+            deck,
+            discardPile: [],
+            createdAt: new Date()
+        };
+
+        // Save game
+        const gameRef = await db.collection("games").add(game);
+
+        res.status(201).json({
+            success: true,
+            gameId: gameRef.id
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+}
+
+
+    export async function drawCard(req, res) {
 
     try {
 
-        const snapshot =
-            await db.collection("cards").get();
+        const { id } = req.params;
 
-        const cards =
-            snapshot.docs.map(doc => doc.data());
+        const gameRef = db.collection("games").doc(id);
 
-        const deck =
-            buildDeck(cards, 2);
+        const gameDoc = await gameRef.get();
 
-        const game = {
+        if (!gameDoc.exists) {
 
-            status: "waiting",
+            return res.status(404).json({
+                success: false,
+                message: "Game not found."
+            });
 
-            minPlayers: 2,
+        }
 
-            maxPlayers: 3,
+        const game = gameDoc.data();
 
-            currentPlayers: 1,
+        if (game.deck.length === 0) {
 
-            currentTurn: 0,
+            return res.status(400).json({
+                success: false,
+                message: "Deck is empty."
+            });
 
-            deck,
+        }
 
-            discardPile: []
+        // Remove the first card
+        const cardId = game.deck.shift();
 
-        };
+        // Add it to the discard pile
+        game.discardPile.push(cardId);
 
-        const ref =
-            await db.collection("games").add(game);
+        // Save updated deck
+        await gameRef.update({
+            deck: game.deck,
+            discardPile: game.discardPile
+        });
+
+        // Fetch full card
+        const cardDoc =
+            await db.collection("cards").doc(cardId).get();
 
         res.json({
 
-            gameId: ref.id,
+            success: true,
 
-            ...game
+            card: {
+
+                id: cardDoc.id,
+
+                ...cardDoc.data()
+
+            }
 
         });
 
     }
 
-    catch(err){
+    catch (err) {
 
-        console.log(err);
+        console.error(err);
 
-        res.status(500).json(err);
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
 
     }
 
