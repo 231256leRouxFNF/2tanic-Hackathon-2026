@@ -1,5 +1,5 @@
 import db from "../config/firebase.js";
-import { buildDeck } from "../services/deck.service.js";
+import { buildDecks } from "../services/deck.service.js";
 
 export async function createGame(req, res) {
     try {
@@ -13,13 +13,17 @@ export async function createGame(req, res) {
         }));
 
         // Build a shuffled deck (2 copies of each card)
-        const deck = buildDeck(cards, 2);
+        const deck = buildDecks(cards, 2);
 
         // Game object
         const game = {
             status: "waiting",
-            deck,
-            discardPile: [],
+            decks,
+            discardPile: {
+                slums: [],
+                exchange: [],
+                aurumQuarter: []
+        },
             createdAt: new Date()
         };
 

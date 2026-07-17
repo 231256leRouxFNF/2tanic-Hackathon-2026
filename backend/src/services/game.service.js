@@ -10,11 +10,11 @@
  * hardware input and the frontend.
  */
 
-import { buildDeck } from "./deck.service.js";
+import { buildDecks } from "./deck.service.js";
 
 export function createGame(cards) {
 
-    const deck = buildDeck(cards, 2);
+    const decks = buildDecks(cards, 2);
 
     return {
 
@@ -28,9 +28,15 @@ export function createGame(cards) {
 
         currentTurn: 0,
 
-        deck,
+        decks,
 
-        discardPile: []
+        discardPile: {
+
+            slums: [],
+            exchange: [],
+            aurumQuarter: []
+
+        }
 
     };
 
