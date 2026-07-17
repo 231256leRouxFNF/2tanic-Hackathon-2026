@@ -158,7 +158,8 @@
 
 .card-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(184, 134, 47, 0.4), transparent);
+    opacity: 0.4;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 0%, #B8862F 50%, rgba(0, 0, 0, 0.00) 100%);
     margin: 8px 0;
     z-index: 1;
 }
@@ -196,9 +197,9 @@
 .card-button {
     width: 100%;
     padding: 10px;
-    background: linear-gradient(180deg, #D4AF37 0%, #AA7C11 100%);
-    border: 1px solid #8B6508;
-    border-radius: 4px;
+    background: linear-gradient(180deg, #D8B040 0%, #B8862F 45%, #8A6018 100%);
+    border: 1.18px solid rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
     color: #FFF;
     font-family: 'Cinzel', sans-serif;
     font-size: 11px;
@@ -206,7 +207,9 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.38) inset,
+        0 3px 8px 0 rgba(0, 0, 0, 0.40);
     transition: filter 0.2s ease, transform 0.1s ease;
     z-index: 1;
 }

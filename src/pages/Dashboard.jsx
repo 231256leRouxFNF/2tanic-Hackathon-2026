@@ -8,7 +8,7 @@
  */
 
 import React, { useState } from 'react';
-import CardDeck from './CardDeck';
+import CardDeck from '../components/CardDeck/CardDeck';
 import { drawRandomCard } from './cardHelper';
 
 export default function Dashboard() {
