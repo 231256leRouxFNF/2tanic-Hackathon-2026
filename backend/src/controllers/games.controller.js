@@ -13,18 +13,18 @@ export async function createGame(req, res) {
         }));
 
         // Build a shuffled deck (2 copies of each card)
-        const deck = buildDecks(cards, 2);
+        const decks = buildDecks(cards, 1);
 
-        // Game object
         const game = {
+
             status: "waiting",
+
             decks,
-            discardPile: {
-                slums: [],
-                exchange: [],
-                aurumQuarter: []
-        },
+
+            discardPile: [],
+
             createdAt: new Date()
+
         };
 
         // Save game
@@ -52,7 +52,7 @@ export async function createGame(req, res) {
 
     try {
 
-        const { id } = req.params;
+        const { id, area, type } = req.params;
 
         const gameRef = db.collection("games").doc(id);
 
@@ -69,7 +69,19 @@ export async function createGame(req, res) {
 
         const game = gameDoc.data();
 
-        if (game.deck.length === 0) {
+        // Get the requested deck
+        const deck = game.decks?.[area]?.[type];
+
+        if (!deck) {
+
+            return res.status(400).json({
+                success: false,
+                message: "Invalid area or card type."
+            });
+
+        }
+
+        if (deck.length === 0) {
 
             return res.status(400).json({
                 success: false,
@@ -78,19 +90,24 @@ export async function createGame(req, res) {
 
         }
 
-        // Remove the first card
-        const cardId = game.deck.shift();
+        // Draw the first card
+        const cardId = deck.shift();
 
-        // Add it to the discard pile
+        // Add to discard pile
         game.discardPile.push(cardId);
 
-        // Save updated deck
+        // Save the updated deck
+        game.decks[area][type] = deck;
+
         await gameRef.update({
-            deck: game.deck,
+
+            decks: game.decks,
+
             discardPile: game.discardPile
+
         });
 
-        // Fetch full card
+        // Fetch the card
         const cardDoc =
             await db.collection("cards").doc(cardId).get();
 
@@ -115,8 +132,11 @@ export async function createGame(req, res) {
         console.error(err);
 
         res.status(500).json({
+
             success: false,
+
             message: err.message
+
         });
 
     }

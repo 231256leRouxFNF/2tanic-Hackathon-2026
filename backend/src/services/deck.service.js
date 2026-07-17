@@ -1,31 +1,55 @@
 /**
- * Creates a shuffled deck with a configurable number of copies
- * of each card.
+ * Creates three separate shuffled decks:
+ * - Slums
+ * - Exchange
+ * - Aurum Quarter
  */
 
 export function buildDecks(cards, copies = 1) {
 
-    return {
+    const areas = [
+        "slums",
+        "exchange",
+        "aurumQuarter"
+    ];
 
-        slums: shuffle(createDeck(
-            cards.filter(card => card.area === "slums"),
-            copies
-        )),
+    const types = [
+        "change",
+        "danger",
+        "money",
+        "risk"
+    ];
 
-        exchange: shuffle(createDeck(
-            cards.filter(card => card.area === "exchange"),
-            copies
-        )),
+    const decks = {};
 
-        aurumQuarter: shuffle(createDeck(
-            cards.filter(card => card.area === "aurumQuarter"),
-            copies
-        ))
+    for (const area of areas) {
 
-    };
+        decks[area] = {};
+
+        for (const type of types) {
+
+            const filtered = cards.filter(card =>
+
+                card.area === area &&
+                card.type === type
+
+            );
+
+            decks[area][type] =
+                shuffle(createDeck(filtered, copies));
+
+        }
+
+    }
+
+    return decks;
 
 }
 
+/**
+ * Creates one deck containing the specified number of copies
+ * of each card.
+ */
 function createDeck(cards, copies) {
 
     const deck = [];
@@ -37,6 +61,23 @@ function createDeck(cards, copies) {
             deck.push(card.id);
 
         }
+
+    }
+
+    return deck;
+
+}
+
+/**
+ * Fisher-Yates Shuffle
+ */
+function shuffle(deck) {
+
+    for (let i = deck.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [deck[i], deck[j]] = [deck[j], deck[i]];
 
     }
 
