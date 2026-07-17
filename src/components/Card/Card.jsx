@@ -116,7 +116,7 @@ export default function Card({ type = "CHANCE", title, description, onDismiss })
                     <CornerDeco className="bottom-left" />
                     <CornerDeco className="bottom-right" />
 
-                    {/* Header Info */}
+                   
                     <div className="card-header">
                         <div className="card-icon">
                             {ICONS[normType] || ICONS.CHANCE}

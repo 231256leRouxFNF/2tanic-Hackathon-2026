@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cinzel+Decorative:wght@700&family=Josefin+Sans:wght@400;600;700&display=swap');
+
+
+.dashboard-layout {
+    background-color: #711923; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #D8B040; 
+    overflow-x: hidden;
+}
+
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 32px;
+    background-color: #64151D;
+    border-bottom: 2px solid #4A0E14;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.header-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-right: 16px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header-divider {
+    width: 2px;
+    height: 32px;
+    background-color: #D8B040;
+    opacity: 0.4;
+    margin-right: 16px;
+}
+
+.header-subtitle {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #A38435; 
+}
+
+.subtitle-top {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.subtitle-bottom {
+    font-size: 9px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.dashboard-body {
+    display: flex;
+    flex: 1;
+}
+
+.zones-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #5C131B;
+}
+
+.zone-header {
+    display: flex;
+    align-items: center;
+    padding: 6px 24px;
+    border-bottom: 1px solid rgba(216, 176, 64, 0.4); 
+}
+
+.zone-icon {
+    font-size: 14px;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+.zone-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.zone-cards {
+    display: flex;
+    gap: 16px;
+    padding: 16px 24px;
+    align-items: center;
+    flex: 1; 
+}
+
+/* 
+   Card was built at 340x272, so i scaled it down here to match the multi-card dashboard view
+cause i'm not rewriting shit in the the inner Card CSS. 
+*/
+
+.card-scale-wrapper {
+    width: 187px; 
+    height: 149.6px;
+    position: relative;
+}
+
+.card-scale-wrapper > .game-card-scene {
+    transform: scale(0.55);
+    transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.sidebar-panel {
+    width: 220px; 
+    background-color: rgba(0, 0, 0, 0.15); 
+    border-left: 2px solid #5C131B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 12px 0 24px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-inner-container {
+    /* just in case stuff is too big */
+    transform: scale(0.85); 
+}

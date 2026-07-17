@@ -10,9 +10,8 @@
  */
 // CardDeck.jsx
 import React from 'react';
-import CardBack from './CardBack';
-import Card from './Card';
-import './Card.css'; // Shared styles
+import Card from '../Card/Card';
+import '../Card/Card.css'; 
 
 //  Props:
 // activeCard:  currently drawn card object
