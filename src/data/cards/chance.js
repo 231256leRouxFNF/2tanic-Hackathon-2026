@@ -18,17 +18,19 @@
  * ============================================================================
  */
 
-const changeCards = [
+const chanceCards = [
 
-    //The Slums
+    //slums
     {
-        id: "change-001",
+        id: "chance-001",
 
         title: "A BLIND EYE",
 
         description: "A foreman looks the other way. Advance 1 space.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
 
         effect: {
             action: "moveForward",
@@ -37,13 +39,15 @@ const changeCards = [
     },
 
         {
-        id: "change-002",
+        id: "chance-002",
 
         title: "FINDERS KEEPERS",
 
         description: "You find a dropped wrench and sell it. Collect $10.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "gainMoney",
@@ -52,13 +56,15 @@ const changeCards = [
     },
     
         {
-        id: "change-003",
+        id: "chance-003",
 
         title: "A DAY OFF",
 
         description: "A fellow worker covers your shift. Skip your next Danger effect.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "skipNextDanger",
@@ -67,13 +73,15 @@ const changeCards = [
     },
     
         {
-        id: "change-004",
+        id: "chance-004",
 
         title: "A BLOW IN THE RIGHT DIRECTION",
 
         description: "Steam vent blows your cap off. Chase it forward 2 spaces.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "moveForward",
@@ -82,13 +90,15 @@ const changeCards = [
     },
 
         {
-        id: "change-005",
+        id: "chance-005",
 
         title: "SHUT THAT PIPE HOLE",
 
         description: "You patch leaking pipe just in time. Gain $20 bonus wage.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "gainMoney",
@@ -97,13 +107,15 @@ const changeCards = [
     },    
 
             {
-        id: "change-006",
+        id: "chance-006",
 
         title: "SCURRYING AROUND",
 
         description: "A rat leads you through a shortcut in the walls. Move forward 2 spaces.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "moveForward",
@@ -112,13 +124,15 @@ const changeCards = [
     },
 
             {
-        id: "change-007",
+        id: "chance-007",
 
         title: "SAVED BY THE BELL",
 
         description: "The factory bell rings early. Skip your next Risk.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "skipNextRisk",
@@ -127,13 +141,15 @@ const changeCards = [
     },
 
             {
-        id: "change-008",
+        id: "chance-008",
 
         title: "TRADERS LUCK",
 
         description: "You trade scrap for a lucky bolt. Roll again.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "RollAgain",
@@ -142,13 +158,15 @@ const changeCards = [
     },
 
             {
-        id: "change-009",
+        id: "chance-009",
 
         title: "C'MON JUST ONE DRINK",
 
         description: "An old friend spots you and buys you a drink. Gain $10.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "gainMoney",
@@ -157,13 +175,15 @@ const changeCards = [
     },
 
             {
-        id: "change-010",
+        id: "chance-010",
 
         title: "OHH LUCKY PENNY",
 
         description: "You find a coin wedged in the floorboards. Gain $20.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "gainMoney",
@@ -172,13 +192,15 @@ const changeCards = [
     },
 
             {
-        id: "change-010",
+        id: "chance-010",
 
         title: "PRETTY FACE",
 
         description: "A supervisor mistakes you for someone else and lets you through a locked door. Move forward 1 space.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "moveForward",
@@ -187,13 +209,15 @@ const changeCards = [
     },
 
             {
-        id: "change-011",
+        id: "chance-011",
 
         title: "EARNING MY KEEP",
 
         description: "You help fix a jammed gear, earn the crew's respect. Skip your next Danger draw.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "skipNextDanger",
@@ -202,13 +226,15 @@ const changeCards = [
     },
 
             {
-        id: "change-012",
+        id: "chance-012",
 
         title: "KEEP ON ROLLING",
 
         description: "A cart of coal rolls your way, hop on. Move forward 3 spaces.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "moveForward",
@@ -217,13 +243,15 @@ const changeCards = [
     },
 
             {
-        id: "change-013",
+        id: "chance-013",
 
         title: "SHORTCUT",
 
         description: "Someone left the gate unlocked. Move forward 1 space.",
 
-        type: "change",
+        area:"slums",
+
+        type: "chance",
         
         effect: {
             action: "moveForward",
@@ -236,7 +264,7 @@ const changeCards = [
 // The Exchange
 
 {
-    id: "change-014",
+    id: "chance-014",
 
     title: "LUCKY ME",
 
@@ -244,7 +272,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -253,7 +281,7 @@ const changeCards = [
 },
 
 {
-    id: "change-015",
+    id: "chance-015",
 
     title: "EAGLE EYES",
 
@@ -261,7 +289,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "drawCard",
@@ -271,7 +299,7 @@ const changeCards = [
 },
 
 {
-    id: "change-016",
+    id: "chance-016",
 
     title: "CALLING IN A FAVOR",
 
@@ -279,7 +307,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "skipCard",
@@ -289,7 +317,7 @@ const changeCards = [
 },
 
 {
-    id: "change-017",
+    id: "chance-017",
 
     title: "MONEY MY DEAR FRIEND",
 
@@ -297,7 +325,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -306,7 +334,7 @@ const changeCards = [
 },
 
 {
-    id: "change-018",
+    id: "chance-018",
 
     title: "HUH, NATURALLY",
 
@@ -314,7 +342,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -323,7 +351,7 @@ const changeCards = [
 },
 
 {
-    id: "change-019",
+    id: "chance-019",
 
     title: "MOVING ON UP",
 
@@ -331,7 +359,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -340,7 +368,7 @@ const changeCards = [
 },
 
 {
-    id: "change-020",
+    id: "chance-020",
 
     title: "I KNOW SOME PEOPLE",
 
@@ -348,7 +376,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -357,7 +385,7 @@ const changeCards = [
 },
 
 {
-    id: "change-021",
+    id: "chance-021",
 
     title: "CONNECTIONS",
 
@@ -365,7 +393,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "drawAgain"
@@ -373,7 +401,7 @@ const changeCards = [
 },
 
 {
-    id: "change-022",
+    id: "chance-022",
 
     title: "MONEY FOR ME",
 
@@ -381,7 +409,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -390,7 +418,7 @@ const changeCards = [
 },
 
 {
-    id: "change-023",
+    id: "chance-023",
 
     title: "ONCE UPON A TIME",
 
@@ -398,7 +426,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -407,7 +435,7 @@ const changeCards = [
 },
 
 {
-    id: "change-024",
+    id: "chance-024",
 
     title: "ALAHAMORA",
 
@@ -415,7 +443,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -424,7 +452,7 @@ const changeCards = [
 },
 
 {
-    id: "change-025",
+    id: "chance-025",
 
     title: "DING GOES THE CLOCK",
 
@@ -432,7 +460,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "rollAgain"
@@ -440,7 +468,7 @@ const changeCards = [
 },
 
 {
-    id: "change-026",
+    id: "chance-026",
 
     title: "TELL TALES",
 
@@ -448,7 +476,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "drawCard",
@@ -458,7 +486,7 @@ const changeCards = [
 },
 
 {
-    id: "change-027",
+    id: "chance-027",
 
     title: "SHORTCUTS FOR THE WIN",
 
@@ -466,7 +494,7 @@ const changeCards = [
 
     area: "exchange",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -479,7 +507,7 @@ const changeCards = [
     // The Aurum Quarter
 
 {
-    id: "change-028",
+    id: "chance-028",
 
     title: "LUCKY TICKET",
 
@@ -487,7 +515,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -496,7 +524,7 @@ const changeCards = [
 },
 
 {
-    id: "change-029",
+    id: "chance-029",
 
     title: "THE ANONYMOUS BENEFACTOR",
 
@@ -504,7 +532,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -513,7 +541,7 @@ const changeCards = [
 },
 
 {
-    id: "change-030",
+    id: "chance-030",
 
     title: "WHEELS COME OFF",
 
@@ -521,7 +549,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -530,7 +558,7 @@ const changeCards = [
 },
 
 {
-    id: "change-031",
+    id: "chance-031",
 
     title: "AN OLD FRIEND REMEMBERS",
 
@@ -538,7 +566,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -547,7 +575,7 @@ const changeCards = [
 },
 
 {
-    id: "change-032",
+    id: "chance-032",
 
     title: "GOOD PRESS",
 
@@ -555,7 +583,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "skipCard",
@@ -565,7 +593,7 @@ const changeCards = [
 },
 
 {
-    id: "change-033",
+    id: "chance-033",
 
     title: "CASE OF MISTAKEN HONOR",
 
@@ -573,7 +601,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -582,7 +610,7 @@ const changeCards = [
 },
 
 {
-    id: "change-034",
+    id: "chance-034",
 
     title: "A WORD FROM THE BUTLER",
 
@@ -590,7 +618,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "peekProperty"
@@ -598,7 +626,7 @@ const changeCards = [
 },
 
 {
-    id: "change-035",
+    id: "chance-035",
 
     title: "ON THE LIST",
 
@@ -606,7 +634,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveToNextCard",
@@ -615,7 +643,7 @@ const changeCards = [
 },
 
 {
-    id: "change-036",
+    id: "chance-036",
 
     title: "TAKEN UNDER WING",
 
@@ -623,7 +651,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -632,7 +660,7 @@ const changeCards = [
 },
 
 {
-    id: "change-037",
+    id: "chance-037",
 
     title: "FRIEND AT THE GAVEL",
 
@@ -640,7 +668,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "skipCard",
@@ -650,7 +678,7 @@ const changeCards = [
 },
 
 {
-    id: "change-038",
+    id: "chance-038",
 
     title: "THE COLLECTOR'S FAVOR",
 
@@ -658,7 +686,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -667,7 +695,7 @@ const changeCards = [
 },
 
 {
-    id: "change-039",
+    id: "chance-039",
 
     title: "HEAD OF THE TABLE",
 
@@ -675,7 +703,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -684,7 +712,7 @@ const changeCards = [
 },
 
 {
-    id: "change-040",
+    id: "chance-040",
 
     title: "WRONG NAME ON THE INVITATION",
 
@@ -692,7 +720,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "moveForward",
@@ -701,7 +729,7 @@ const changeCards = [
 },
 
 {
-    id: "change-041",
+    id: "chance-041",
 
     title: "WRONG TICKET, RIGHT PRIZE",
 
@@ -709,7 +737,7 @@ const changeCards = [
 
     area: "aurumQuarter",
 
-    type: "change",
+    type: "chance",
 
     effect: {
         action: "gainMoney",
@@ -719,4 +747,4 @@ const changeCards = [
   
 ];
 
-export default changeCards;
+export default chanceCards;

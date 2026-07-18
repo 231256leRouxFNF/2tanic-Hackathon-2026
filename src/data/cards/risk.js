@@ -9,7 +9,7 @@
 
 const riskCards = [
 
-    //The Slums
+    //slums
 {
     id: "risk-001",
 
@@ -261,7 +261,7 @@ const riskCards = [
 
     title: "POKER FACE",
 
-    description: "Wager your break time on a card game. Win: draw a Change card. Lose: move back 1 space.",
+    description: "Wager your break time on a card game. Win: draw a chance card. Lose: move back 1 space.",
 
     area: "slums",
 
@@ -270,7 +270,7 @@ const riskCards = [
     effect: {
         action: "rollForCardOrMovement",
         successRoll: 4,
-        successDeck: "change",
+        successDeck: "chance",
         failSpaces: -1
     }
 },

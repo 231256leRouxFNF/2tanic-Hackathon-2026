@@ -9,8 +9,7 @@
 
 const riskCards = [
 
-    //The Slums
-   // The Slums
+   // slums
 
 {
     id: "danger-001",
@@ -127,7 +126,7 @@ const riskCards = [
 
     effect: {
         action: "skipCard",
-        deck: "change",
+        deck: "chance",
         amount: 1
     }
 },

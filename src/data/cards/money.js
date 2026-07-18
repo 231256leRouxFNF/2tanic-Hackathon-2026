@@ -9,8 +9,7 @@
 
 const moneyCards = [
 
-    //The Slums
-// The Slums
+    //slums
 
 {
     id: "money-001",
@@ -119,7 +118,7 @@ const moneyCards = [
 
     title: "POCKET MONEY",
 
-    description: "You find loose change near the loading dock. Gain $10.",
+    description: "You find loose chance near the loading dock. Gain $10.",
 
     area: "slums",
 

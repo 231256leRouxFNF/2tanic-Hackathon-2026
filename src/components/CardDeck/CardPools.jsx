@@ -20,13 +20,13 @@
 export const CARD_POOLS = {
     chance: [
       {
-            id: "change-001",
+            id: "chance-001",
 
             title: "A BLIND EYE",
 
             description: "A foreman looks the other way. Advance 1 space.",
 
-            type: "change",
+            type: "chance",
 
             effect: {
                 action: "gainMoney",

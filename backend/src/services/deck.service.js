@@ -14,7 +14,7 @@ export function buildDecks(cards, copies = 1) {
     ];
 
     const types = [
-        "change",
+        "chance",
         "danger",
         "money",
         "risk"
@@ -32,8 +32,13 @@ export function buildDecks(cards, copies = 1) {
 
                 card.area === area &&
                 card.type === type
-
             );
+
+                console.log(
+                    area,
+                    type,
+                    filtered.length
+                );
 
             decks[area][type] =
                 shuffle(createDeck(filtered, copies));

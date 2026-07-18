@@ -13,7 +13,7 @@ import DiceRoller from '../components/Sidebar/DiceRoller';
 import './Dashboard.css';
 
 /**Import for the api */
-import { drawCard } from '../services/api.js';
+import { drawCard } from '../services/api';
 
 
 const SunIcon = () => (
@@ -48,7 +48,7 @@ const ZONES = [
 const CARD_TYPES = [
     {
         label: "CHANCE",
-        value: "change"
+        value: "chance"
     },
     {
         label: "RISK",
@@ -72,6 +72,15 @@ export default function Dashboard() {
     async function loadCards() {
         
         console.log("Loading cards from backend...");
+
+        const result = await drawCard(
+            "xvLE6v4mumRXuH0NHC43", // gameId
+            "slums", // area
+            "chance" // type
+        )
+
+        console.log("Cards loaded:", result);
+        setCards(result);
 
     }
 
