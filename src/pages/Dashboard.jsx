@@ -83,7 +83,7 @@ export default function Dashboard() {
 
                 const result = await drawCard(
 
-                    "RHLMIXi0oM4U9OZG2yjo",
+                    "aDQM5rOivSJb17pHTIjQ",
                     zone.value,
                     cardType.value
 

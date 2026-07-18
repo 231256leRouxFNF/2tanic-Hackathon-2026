@@ -1,4 +1,5 @@
-const API = "http://localhost:3001/api";
+// const API = "http://localhost:3001/api";
+const API = import.meta.env.VITE_API_URL;
 
 export async function createGame() {
 
