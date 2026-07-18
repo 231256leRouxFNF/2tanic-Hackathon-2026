@@ -19,15 +19,19 @@ import { Server } from "socket.io";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import gamesRouter from "./routes/games.route.js";
+import gamesRouter from "./routes/games.route.js"; // or games.routes.js
 
 dotenv.config();
 
 const app = express();
-app.use("/api/games", gamesRouter);
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
+
 app.use(express.json());
+
+app.use("/api/games", gamesRouter);
 
 const server = http.createServer(app);
 
@@ -37,23 +41,31 @@ const io = new Server(server, {
     }
 });
 
-app.get("/health", (req ,res) => {
+app.get("/health", (req, res) => {
+
     res.json({
         status: "OK",
-        messages: "2TANIC Backend Running"
+        message: "2TANIC Backend Running"
     });
+
 });
 
 io.on("connection", (socket) => {
+
     console.log("Frontend connected.");
 
     socket.on("disconnect", () => {
+
         console.log("Frontend disconnected.");
+
     });
+
 });
 
 const PORT = process.env.PORT || 3001;
 
 server.listen(PORT, () => {
+
     console.log(`Server is running on port ${PORT}`);
+
 });

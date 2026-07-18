@@ -7,10 +7,13 @@
  * contain business logic.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '../components/Card/Card';
 import DiceRoller from '../components/Sidebar/DiceRoller';
 import './Dashboard.css';
+
+/**Import for the api */
+import { drawCard } from '../services/api.js';
 
 
 const SunIcon = () => (
@@ -27,11 +30,54 @@ const SunIcon = () => (
     </svg>
 );
 
-const ZONES = ["THE SLUMS", "THE EXCHANGE", "THE AURUM QUARTER"];
-const CARD_TYPES = ['CHANCE', 'RISK', 'MONEY', 'DANGER'];
+const ZONES = [
+    {
+        label: "THE SLUMS",
+        value: "slums"
+    },
+    {
+        label: "THE EXCHANGE",
+        value: "exchange"
+    },
+    {
+        label: "THE AURUM QUARTER",
+        value: "aurumQuarter"
+    }
+];
+
+const CARD_TYPES = [
+    {
+        label: "CHANCE",
+        value: "change"
+    },
+    {
+        label: "RISK",
+        value: "risk"
+    },
+    {
+        label: "MONEY",
+        value: "money"
+    },
+    {
+        label: "DANGER",
+        value: "danger"
+    }
+];
 
 export default function Dashboard() {
     const [rolledNumber, setRolledNumber] = useState(1);
+
+    const [cards, setCards] = useState({});
+
+    async function loadCards() {
+        
+        console.log("Loading cards from backend...");
+
+    }
+
+    useEffect(() => {
+        loadCards();
+    }, []);
 
     const handleRollComplete = (num) => {
         setRolledNumber(num);
@@ -51,21 +97,20 @@ export default function Dashboard() {
             <div className="dashboard-body">
                 <div className="zones-panel">
                     {ZONES.map((zone) => (
-                        <div className="card-zone" key={zone}>
+                        <div className="card-zone" key={zone.value}>
                             <div className="zone-header">
                                 <SunIcon />
-                                <h2 className="zone-title">{zone}</h2>
-                            </div>\
+                                <h2 className="zone-title">{zone.label}</h2>
+                            </div>
                             
                             {/* The 4 Cards in this Zone - I DON'T KNOW HOW TO HOOK THIS TO THE DADATBASE T-T*/}
                             <div className="zone-cards">
-                                {CARD_TYPES.map(type => (
-                                    <div className="card-scale-wrapper" key={`${zone}-${type}`}>
+                                {CARD_TYPES.map(cardType => (
+                                    <div className="card-scale-wrapper" key={`${zone.value}-${cardType.value}`}>
                                         <Card 
-                                            type={type} 
-                                            title={`${type} EVENT`}
-                                            description={`You drew a ${type.toLowerCase()} card in ${zone}.`}
-                                        />
+                                            type={cardType.value} 
+                                            title={`${cardType.label} EVENT`}
+                                            description={`You drew a ${cardType.label.toLowerCase()} card in ${zone.label}.`} />
                                     </div>
                                 ))}
                             </div>
