@@ -70,17 +70,34 @@ export default function Dashboard() {
     const [cards, setCards] = useState({});
 
     async function loadCards() {
-        
+
         console.log("Loading cards from backend...");
 
-        const result = await drawCard(
-            "xvLE6v4mumRXuH0NHC43", // gameId
-            "slums", // area
-            "chance" // type
-        )
+        const loadedCards = {};
 
-        console.log("Cards loaded:", result);
-        setCards(result);
+        for (const zone of ZONES) {
+
+            loadedCards[zone.value] = {};
+
+            for (const cardType of CARD_TYPES) {
+
+                const result = await drawCard(
+
+                    "xvLE6v4mumRXuH0NHC43",
+                    zone.value,
+                    cardType.value
+
+                );
+
+                loadedCards[zone.value][cardType.value] = result.card;
+
+            }
+
+        }
+
+        console.log(loadedCards);
+
+        setCards(loadedCards);
 
     }
 
@@ -116,10 +133,11 @@ export default function Dashboard() {
                             <div className="zone-cards">
                                 {CARD_TYPES.map(cardType => (
                                     <div className="card-scale-wrapper" key={`${zone.value}-${cardType.value}`}>
-                                        <Card 
-                                            type={cardType.value} 
-                                            title={`${cardType.label} EVENT`}
-                                            description={`You drew a ${cardType.label.toLowerCase()} card in ${zone.label}.`} />
+                                            <Card
+                                                type={cards[zone.value]?.[cardType.value]?.type}
+                                                title={cards[zone.value]?.[cardType.value]?.title}
+                                                description={cards[zone.value]?.[cardType.value]?.description}
+                                            />
                                     </div>
                                 ))}
                             </div>
