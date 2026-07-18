@@ -83,11 +83,13 @@ export default function Dashboard() {
 
                 const result = await drawCard(
 
-                    "xvLE6v4mumRXuH0NHC43",
+                    "RHLMIXi0oM4U9OZG2yjo",
                     zone.value,
                     cardType.value
 
                 );
+
+                console.log(zone.value, cardType.value, result);
 
                 loadedCards[zone.value][cardType.value] = result.card;
 
