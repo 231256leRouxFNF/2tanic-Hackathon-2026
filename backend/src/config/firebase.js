@@ -1,12 +1,22 @@
 import { initializeApp, cert } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-import serviceAccount from "../../hackathon-2026-db-firebase-adminsdk-fbsvc-5afe8fcdbe.json" with { type: "json" };
+let credential;
 
-initializeApp({
-    credential: cert(serviceAccount)
-});
+if (process.env.FIREBASE_PRIVATE_KEY) {
+  credential = cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+  });
+} else {
+  const serviceAccount = await import("../../hackathon-2026-db-firebase-adminsdk-fbsvc-5afe8fcdbe.json", {
+    with: { type: "json" },
+  });
 
-const db = getFirestore();
+  credential = cert(serviceAccount.default);
+}
 
-export default db;
+initializeApp({ credential });
+
+export default getFirestore();

@@ -27,3 +27,8 @@ backend/hackathon-2026-db-firebase-adminsdk-fbsvc-5afe8fcdbe.json
 
 node_modules
 dist
+
+/backend/hackathon-2026-db-firebase-adminsdk-fbsvc-5afe8fcdbe.json
+/backend/node_modules
+/backend/dist  
+/backend/.env
