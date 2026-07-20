@@ -16,8 +16,10 @@
  * - Handle communication with external systems.
  * ============================================================================
  */
-import React, { useState } from 'react';
+import { useState, useEffect } from "react";
 import './Card.css';
+
+// import React, { useState } from 'react';
 
 const CornerDeco = ({ className }) => (
     <svg 
