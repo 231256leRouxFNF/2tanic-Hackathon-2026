@@ -72,85 +72,118 @@ const ICONS = {
     )
 };
 
-export default function Card({ type = "CHANCE", title, description, onDismiss }) {
+export default function Card({
+    type = "CHANCE",
+    title,
+    description,
+    onDismiss,
+}) {
     const [isFlipped, setIsFlipped] = useState(false);
 
-    const hasCard = title && description;
-    
-    // const [cards, setCards] = useState({});
+    const hasCard = Boolean(title && description);
+
+    // Reset whenever the card disappears or changes
+    useEffect(() => {
+        setIsFlipped(false);
+    }, [title, description]);
 
     const normType = (type || "chance").toUpperCase();
     const themeClass = `theme-${normType.toLowerCase()}`;
 
+    const handleFlip = () => {
+        if (!hasCard) return;
+        if (isFlipped) return;
+
+        setIsFlipped(true);
+    };
+
+    const handleDismiss = (e) => {
+        e.stopPropagation();
+
+        setIsFlipped(false);
+
+        if (onDismiss) {
+            onDismiss();
+        }
+    };
+
     return (
         <div className={`game-card-scene ${themeClass}`}>
-            <div 
-                className={`game-card-flipper ${isFlipped ? 'is-flipped' : ''}`}
-                onClick={() => {
-                    
-                    if (!isFlipped) setIsFlipped(true);
-                }}
+            <div
+                className={`game-card-flipper ${
+                    isFlipped ? "is-flipped" : ""
+                }`}
+                onClick={handleFlip}
             >
-                
-                {/* =========================================
-                    DARK SIDE (FRONT - TAP TO REVEAL) >>:D
-                ========================================= */}
+                {/* FRONT */}
+
                 <div className="card-face face-dark">
                     <CornerDeco className="top-left" />
                     <CornerDeco className="top-right" />
                     <CornerDeco className="bottom-left" />
                     <CornerDeco className="bottom-right" />
-                    
+
                     <div className="dark-content">
                         <div className="cover-icon">
                             {ICONS[normType] || ICONS.CHANCE}
                         </div>
-                        <div className="cover-title">{normType}</div>
+
+                        <div className="cover-title">
+                            {normType}
+                        </div>
                     </div>
-                    
-                    <div className="tap-to-draw">Tap to draw</div>
+
+                    <div className="tap-to-draw">
+                        {hasCard ? "Tap to draw" : "No card loaded"}
+                    </div>
                 </div>
 
-                {/* =========================================
-                    LIGHT SIDE (BACK - THE REVEALED CARD) >:D
-                ========================================= */}
+                {/* BACK */}
+
                 <div className="card-face face-light">
                     <CornerDeco className="top-left" />
                     <CornerDeco className="top-right" />
                     <CornerDeco className="bottom-left" />
                     <CornerDeco className="bottom-right" />
 
-                   
                     <div className="card-header">
                         <div className="card-icon">
                             {ICONS[normType] || ICONS.CHANCE}
                         </div>
+
                         <div className="card-meta">
-                            <span className="subtitle">Card Drawn</span>
-                            <span className="type-title">{normType}</span>
+                            <span className="subtitle">
+                                Card Drawn
+                            </span>
+
+                            <span className="type-title">
+                                {normType}
+                            </span>
                         </div>
                     </div>
 
                     <div className="card-divider" />
 
                     <div className="card-body">
-                        <h2 className="card-title">{title}</h2>
-                        <p className="card-description">{description}</p>
+                        <h2 className="card-title">
+                            {title || "No Card"}
+                        </h2>
+
+                        <p className="card-description">
+                            {description ||
+                                "Draw a card to reveal its contents."}
+                        </p>
                     </div>
 
                     <div className="card-divider" />
 
-                    <button 
-                        className="card-button" 
-                        onClick={(e) => {
-                            e.stopPropagation(); 
-                            if(onDismiss) onDismiss();
-                        }}
+                    <button
+                        className="card-button"
+                        onClick={handleDismiss}
                     >
                         Dismiss Card
                     </button>
                 </div>
-                
             </div>
         </div>
     );
