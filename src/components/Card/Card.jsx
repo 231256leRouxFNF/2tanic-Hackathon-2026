@@ -74,10 +74,12 @@ const ICONS = {
 
 export default function Card({ type = "CHANCE", title, description, onDismiss }) {
     const [isFlipped, setIsFlipped] = useState(false);
+
+    const hasCard = title && description;
     
     // const [cards, setCards] = useState({});
 
-    const normType = type.toUpperCase();
+    const normType = (type || "chance").toUpperCase();
     const themeClass = `theme-${normType.toLowerCase()}`;
 
     return (

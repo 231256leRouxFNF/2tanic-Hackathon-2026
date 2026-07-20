@@ -64,20 +64,20 @@ const CARD_TYPES = [
     }
 ];
 
-const dismissCard = (zone, cardType) => {
-    setCards(prev => ({
-        ...prev,
-        [zone]: {
-            ...prev[zone],
-            [cardType]: null
-        }
-    }));
-};
-
 export default function Dashboard() {
-    const [rolledNumber, setRolledNumber] = useState(1);
 
+    const [rolledNumber, setRolledNumber] = useState(1);
     const [cards, setCards] = useState({});
+
+    const dismissCard = (zone, cardType) => {
+        setCards(prev => ({
+            ...prev,
+            [zone]: {
+                ...prev[zone],
+                [cardType]: null
+            }
+        }));
+    };
 
     async function loadCards() {
 
@@ -145,12 +145,12 @@ export default function Dashboard() {
                             <div className="zone-cards">
                                 {CARD_TYPES.map(cardType => (
                                     <div className="card-scale-wrapper" key={`${zone.value}-${cardType.value}`}>
-                                            <Card
-                                                type={cards[zone.value]?.[cardType.value]?.type}
-                                                title={cards[zone.value]?.[cardType.value]?.title}
-                                                description={cards[zone.value]?.[cardType.value]?.description}
-                                                onDismiss={() => dismissCard(zone.value, cardType.value)}
-                                            />
+                                        <Card
+                                            type={cards[zone.value]?.[cardType.value]?.type}
+                                            title={cards[zone.value]?.[cardType.value]?.title}
+                                            description={cards[zone.value]?.[cardType.value]?.description}
+                                            onDismiss={() => dismissCard(zone.value, cardType.value)}
+                                        />
                                     </div>
                                 ))}
                             </div>
