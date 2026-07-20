@@ -64,6 +64,16 @@ const CARD_TYPES = [
     }
 ];
 
+const dismissCard = (zone, cardType) => {
+    setCards(prev => ({
+        ...prev,
+        [zone]: {
+            ...prev[zone],
+            [cardType]: null
+        }
+    }));
+};
+
 export default function Dashboard() {
     const [rolledNumber, setRolledNumber] = useState(1);
 
@@ -139,6 +149,7 @@ export default function Dashboard() {
                                                 type={cards[zone.value]?.[cardType.value]?.type}
                                                 title={cards[zone.value]?.[cardType.value]?.title}
                                                 description={cards[zone.value]?.[cardType.value]?.description}
+                                                onDismiss={() => dismissCard(zone.value, cardType.value)}
                                             />
                                     </div>
                                 ))}
