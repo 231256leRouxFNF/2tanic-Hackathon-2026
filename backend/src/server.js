@@ -26,10 +26,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "https://2tanic-hackathon-2026-delta.vercel.app"
-    ]
+    origin: true,
+    credentials: true
 }));
 
 app.use(express.json());
