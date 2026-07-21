@@ -70,7 +70,7 @@ export default function Dashboard() {
     const [gameId, setGameId] = useState(null);
     const [cards, setCards] = useState({});
 
-    const currentCard = cards[zone.value]?.[cardType.value];
+    // const currentCard = cards[zone.value]?.[cardType.value];
 
     const dismissCard = async (zone, cardType) => {
 
@@ -138,6 +138,8 @@ export default function Dashboard() {
         setRolledNumber(num);
     };
 
+    console.log(cards);
+
     return (
         <div className="dashboard-layout">
             <header className="dashboard-header">
@@ -160,16 +162,26 @@ export default function Dashboard() {
                             
                             {/* The 4 Cards in this Zone - I DON'T KNOW HOW TO HOOK THIS TO THE DADATBASE T-T*/}
                             <div className="zone-cards">
-                                {CARD_TYPES.map(cardType => (
-                                    <div className="card-scale-wrapper" key={`${zone.value}-${cardType.value}`}>
-                                            <Card
-                                                type={currentCard?.type}
-                                                title={currentCard?.title}
-                                                description={currentCard?.description}
-                                                onDismiss={() => dismissCard(zone.value, cardType.value)}
-                                            />
-                                    </div>
-                                ))}
+                                    {CARD_TYPES.map(cardType => {
+
+                                        const currentCard = cards[zone.value]?.[cardType.value];
+
+                                        return (
+                                            <div
+                                                className="card-scale-wrapper"
+                                                key={`${zone.value}-${cardType.value}`}
+                                            >
+                                                <Card
+                                                    type={currentCard?.type}
+                                                    title={currentCard?.title}
+                                                    description={currentCard?.description}
+                                                    onDismiss={() =>
+                                                        dismissCard(zone.value, cardType.value)
+                                                    }
+                                                />
+                                            </div>
+                                        );
+                                    })}
                             </div>
                             
                         </div>

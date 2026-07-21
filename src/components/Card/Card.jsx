@@ -85,6 +85,8 @@ export default function Card({
 
     const hasCard = Boolean(title && description);
 
+    console.log((title, description, hasCard));
+
     // Reset whenever the card disappears or changes
     useEffect(() => {
         setIsFlipped(false);
