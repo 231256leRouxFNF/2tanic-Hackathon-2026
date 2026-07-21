@@ -13,7 +13,7 @@ import DiceRoller from '../components/Sidebar/DiceRoller';
 import './Dashboard.css';
 
 /**Import for the api */
-import { drawCard } from '../services/api';
+import { createGame, drawCard } from '../services/api';
 
 
 const SunIcon = () => (
@@ -67,8 +67,10 @@ const CARD_TYPES = [
 export default function Dashboard() {
 
     const [rolledNumber, setRolledNumber] = useState(1);
-    const [card, setCards] = useState({});
     const [gameId, setGameId] = useState(null);
+    const [cards, setCards] = useState({});
+
+    const currentCard = cards[zone.value]?.[cardType.value];
 
     const dismissCard = async (zone, cardType) => {
 
@@ -78,31 +80,23 @@ export default function Dashboard() {
             cardType
         );
 
-        if(result.success){
-
-            setCards(prev => ({
-                ...prev,
-                [zone]:{
-                    ...prev[zone],
-                    [cardType]: result.card
-                }
-            }));
-
+        if (!result.success) {
+            console.log(result.message);
+            return;
         }
 
+        setCards(prev => ({
+            ...prev,
+            [zone]: {
+                ...prev[zone],
+                [cardType]: result.card
+            }
+        }));
     };
 
-    async function startGame() {
-        const game = await createGame();
+    async function loadCards(id) {
 
-        setGameId(game.gameId);
-
-        loadCards(game.gameId);
-    }
-
-    async function loadCards() {
-
-        console.log("Loading cards from backend...");
+        console.log("Loading cards...");
 
         const loadedCards = {};
 
@@ -113,24 +107,27 @@ export default function Dashboard() {
             for (const cardType of CARD_TYPES) {
 
                 const result = await drawCard(
-                    gameId,
+                    id,
                     zone.value,
                     cardType.value
-
                 );
 
-                console.log(zone.value, cardType.value, result);
+                console.log(result);
 
-                loadedCards[zone.value][cardType.value] = result.card;
-
+                loadedCards[zone.value][cardType.value] =
+                    result.success ? result.card : null;
             }
-
         }
 
-        console.log(loadedCards);
-
         setCards(loadedCards);
+    }
 
+    async function startGame() {
+        const game = await createGame();
+
+        setGameId(game.gameId);
+
+        await loadCards(game.gameId);
     }
 
     useEffect(() => {
@@ -165,12 +162,12 @@ export default function Dashboard() {
                             <div className="zone-cards">
                                 {CARD_TYPES.map(cardType => (
                                     <div className="card-scale-wrapper" key={`${zone.value}-${cardType.value}`}>
-                                        <Card
-                                            type={cards[zone.value]?.[cardType.value]?.type}
-                                            title={cards[zone.value]?.[cardType.value]?.title}
-                                            description={cards[zone.value]?.[cardType.value]?.description}
-                                            onDismiss={() => dismissCard(zone.value, cardType.value)}
-                                        />
+                                            <Card
+                                                type={currentCard?.type}
+                                                title={currentCard?.title}
+                                                description={currentCard?.description}
+                                                onDismiss={() => dismissCard(zone.value, cardType.value)}
+                                            />
                                     </div>
                                 ))}
                             </div>

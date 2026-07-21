@@ -17,6 +17,7 @@
  * ============================================================================
  */
 import { useState, useEffect } from "react";
+import { createGame, drawCard } from "../../services/api.js";
 import './Card.css';
 
 // import React, { useState } from 'react';
