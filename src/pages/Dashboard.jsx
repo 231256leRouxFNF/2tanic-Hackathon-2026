@@ -67,17 +67,38 @@ const CARD_TYPES = [
 export default function Dashboard() {
 
     const [rolledNumber, setRolledNumber] = useState(1);
-    const [cards, setCards] = useState({});
+    const [card, setCards] = useState({});
+    const [gameId, setGameId] = useState(null);
 
-    const dismissCard = (zone, cardType) => {
-        setCards(prev => ({
-            ...prev,
-            [zone]: {
-                ...prev[zone],
-                [cardType]: null
-            }
-        }));
+    const dismissCard = async (zone, cardType) => {
+
+        const result = await drawCard(
+            gameId,
+            zone,
+            cardType
+        );
+
+        if(result.success){
+
+            setCards(prev => ({
+                ...prev,
+                [zone]:{
+                    ...prev[zone],
+                    [cardType]: result.card
+                }
+            }));
+
+        }
+
     };
+
+    async function startGame() {
+        const game = await createGame();
+
+        setGameId(game.gameId);
+
+        loadCards(game.gameId);
+    }
 
     async function loadCards() {
 
@@ -92,8 +113,7 @@ export default function Dashboard() {
             for (const cardType of CARD_TYPES) {
 
                 const result = await drawCard(
-
-                    "aDQM5rOivSJb17pHTIjQ",
+                    gameId,
                     zone.value,
                     cardType.value
 
@@ -114,7 +134,7 @@ export default function Dashboard() {
     }
 
     useEffect(() => {
-        loadCards();
+        startGame();
     }, []);
 
     const handleRollComplete = (num) => {
