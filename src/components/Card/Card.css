@@ -48,9 +48,14 @@
     width: 100%;
     height: 100%;
     position: relative;
-    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    /* transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); */
+    transition: transform .6s ease;
     transform-style: preserve-3d;
     cursor: pointer;
+
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .game-card-flipper.is-flipped {
@@ -82,6 +87,11 @@
         0 0 0 4px var(--theme-glow),
         0 0 0 6px var(--theme-outer-glow),
         0 24px 64px 0 rgba(0, 0, 0, 0.75);
+
+    -webkit-backface-visibility: hidden; 
+    inset: 0;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
 }
 
 
@@ -119,7 +129,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: auto;
+
+    transform: rotateY(0deg) translateZ(1px);
 }
 
 .face-dark .dark-content {
@@ -158,7 +170,7 @@
 }
 
 .face-light {
-    transform: rotateY(180deg); 
+    transform: rotateY(180deg) translateZ(1px); 
     background: linear-gradient(160deg, #EAD9B8 8.49%, #DDC9A3 91.51%);
     padding: 24px;
     display: flex;
