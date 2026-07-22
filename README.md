@@ -1,16 +1,219 @@
-# React + Vite
+# 2TANIC: Gavel & Gears
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A digital companion application built for the **2TANIC Hackathon 2026**.
 
-Currently, two official plugins are available:
+Gavel & Gears is a React-based card management system that connects to a backend API to dynamically draw, display, and replace gameplay cards across multiple districts. Players can reveal cards, dismiss them, and receive new cards generated from the game server.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Preview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> Add screenshots or a GIF here
 
-## Expanding the ESLint configuration
+```
+/docs/dashboard.png
+/docs/card-flip.gif
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Features
+
+- Dynamic card drawing from a backend API
+- Card replacement after dismissal
+- Interactive dice roller
+- Multiple gameplay zones
+  - The Slums
+  - The Exchange
+  - The Aurum Quarter
+- Four unique card types
+  - Chance
+  - Risk
+  - Money
+  - Danger
+- Animated card flip interactions
+- Responsive dashboard layout
+- Built with React + Vite
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React 19
+- Vite
+- CSS3
+- JavaScript (ES6+)
+
+### Backend
+
+- REST API
+- Fetch API
+
+---
+
+## Project Structure
+
+```
+src/
+│
+├── components/
+│   ├── Card/
+│   └── Sidebar/
+│
+├── pages/
+│   └── Dashboard.jsx
+│
+├── services/
+│   └── api.js
+│
+├── assets/
+│
+└── App.jsx
+```
+
+---
+
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/2tanic-Hackathon-2026.git
+```
+
+Navigate into the project
+
+```bash
+cd 2tanic-Hackathon-2026
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Create a `.env` file in the project root
+
+```env
+VITE_API_URL=https://your-api-url.com
+```
+
+Run the development server
+
+```bash
+npm run dev
+```
+
+Build for production
+
+```bash
+npm run build
+```
+
+Preview the production build
+
+```bash
+npm run preview
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the project root.
+
+```env
+VITE_API_URL=https://your-backend-url.com
+```
+
+Vite only exposes environment variables prefixed with `VITE_`.
+
+---
+
+## Gameplay Flow
+
+1. Create a new game session.
+2. Load all available cards.
+3. Display cards by district.
+4. Tap a card to reveal it.
+5. Dismiss the card.
+6. Request a new card from the backend.
+
+---
+
+## API Endpoints
+
+### Create Game
+
+```
+POST /games
+```
+
+Returns
+
+```json
+{
+  "gameId": "..."
+}
+```
+
+---
+
+### Draw Card
+
+```
+POST /games/:gameId/draw/:area/:type
+```
+
+Returns
+
+```json
+{
+  "success": true,
+  "card": {
+    "type": "CHANCE",
+    "title": "...",
+    "description": "..."
+  }
+}
+```
+
+---
+
+## Design
+
+The UI is inspired by vintage industrial board games featuring:
+
+- Brass and bronze accents
+- Victorian typography
+- Animated card flips
+- Dynamic colour themes
+- Ornamental card frames
+
+---
+
+## Team
+
+Built during the **2TANIC Hackathon 2026**.
+
+Contributors:
+
+- Francois le Roux
+- *(Add teammates here)*
+
+---
+
+## License
+
+This project was created for the **2TANIC Hackathon 2026** and is intended for educational and demonstration purposes.
+
+---
+
+## Acknowledgements
+
+- React
+- Vite
+- The 2TANIC Hackathon organizers
