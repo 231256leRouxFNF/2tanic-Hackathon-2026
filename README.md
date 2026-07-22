@@ -206,14 +206,23 @@ Built during the **2TANIC Hackathon 2026**.
 
 Contributors:
 
-- Francois le Roux
-- *(Add teammates here)*
+- Francois le Roux DV300 
+- Tyla Oberholzer UX300
+- Kobus Jordaan CC300
+- Richard Morris ID300 & CC300
+- Mmasape Manthata UX200 & ID200
+- Meinke le Roux UX200 & ID200
+- Rachél Laubscher UX200
+- Remazani Ngalwana DV200
+- Oabile Boikanyo CC200
+- Lennon Mupfukudzwa ID200
+- Zander Louw UX200
 
 ---
 
 ## License
 
-This project was created for the **2TANIC Hackathon 2026** and is intended for educational and demonstration purposes.
+This project was created for the **OWI Hackathon 2026** and is intended for educational and demonstration purposes.
 
 ---
 
