@@ -4,6 +4,11 @@ A digital companion application built for the **2TANIC Hackathon 2026**.
 
 Gavel & Gears is a React-based card management system that connects to a backend API to dynamically draw, display, and replace gameplay cards across multiple districts. Players can reveal cards, dismiss them, and receive new cards generated from the game server.
 
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript)
+![License](https://img.shields.io/badge/License-Hackathon-blue)
+
 ---
 
 ## Preview
