@@ -221,4 +221,5 @@ This project was created for the **2TANIC Hackathon 2026** and is intended for e
 
 - React
 - Vite
-- The 2TANIC Hackathon organizers
+- OWI Hackathon
+- The 2Tanic team
