@@ -13,7 +13,7 @@ Gavel & Gears is a React-based card management system that connects to a backend
 
 ## Preview
 
-> Add screenshots or a GIF here
+<img src="/readme-files/cavelgears-preview.png" alt="Hero Banner" width="800">
 
 ```
 /docs/dashboard.png
