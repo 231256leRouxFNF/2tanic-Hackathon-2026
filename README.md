@@ -202,8 +202,6 @@ The UI is inspired by vintage industrial board games featuring:
 
 ## Team
 
-Built during the **2TANIC Hackathon 2026**.
-
 Contributors:
 
 - Francois le Roux DV300 
