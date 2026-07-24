@@ -91,10 +91,13 @@
 .zone-title {
     font-family: 'Cinzel', serif;
     font-size: 13px;
+    color: #B8862F;
     font-weight: 700;
     letter-spacing: 4px;
     margin: 0;
     text-transform: uppercase;
+    margin-left: 5px;
+
 }
 
 .zone-cards {
